@@ -1,0 +1,2 @@
+xhtml2pdf >= 0.2.16
+fastapi >= 0.111.0
