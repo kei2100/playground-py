@@ -20,8 +20,7 @@ def convert(html: UploadFile):
 
 @app.get("/for_ab")
 def for_ab():
-    # with open("test.html", "rb") as hf:
-    with open("/Users/kei.arima/Desktop/medicine_note.html", "rb") as hf:
+    with open("test.html", "rb") as hf:
         with tempfile.NamedTemporaryFile(mode="wb+", delete=False) as f:
             pisa.CreatePDF(hf, dest=f)
             f.close()

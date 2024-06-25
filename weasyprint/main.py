@@ -28,8 +28,7 @@ def convert(html: UploadFile):
 @app.get("/for_ab")
 def for_ab():
     with tempfile.NamedTemporaryFile(mode="wb+", delete=False) as f:
-        # html = HTML(filename="test.html")
-        html = HTML(filename="/Users/kei.arima/Desktop/medicine_note.html")
+        html = HTML(filename="test.html")
         html.write_pdf(target=f, font_config=font_configuration)
         f.close()
         return FileResponse(
