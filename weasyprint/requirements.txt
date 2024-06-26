@@ -1,2 +1,4 @@
 weasyprint >= 62.2
 fastapi >= 0.111.0
+
+aiohttp >= 3.9.5
