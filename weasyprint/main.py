@@ -10,6 +10,7 @@ from starlette.background import BackgroundTask
 
 app = FastAPI()
 executor = concurrent.futures.ProcessPoolExecutor()
+font_configuration = FontConfiguration()
 
 
 @app.on_event("shutdown")
@@ -17,7 +18,13 @@ def shutdown_event():
     executor.shutdown()
 
 
-font_configuration = FontConfiguration()
+@app.post("/files")
+def upload_files(files: list[UploadFile]):
+    """
+    curl -X POST http://127.0.0.1:8000/files -F "files=@memo.md" -F "files=@image.jpg"
+    {"filenames":["memo.md","image.jpg"]}
+    """
+    return {"filenames": [file.filename for file in files]}
 
 
 @app.post("/convert")
@@ -54,7 +61,6 @@ async def for_ab():
         media_type="application/pdf",
         background=BackgroundTask(lambda: os.remove(filename)),
     )
-
 
 # @app.get("/for_ab")
 # async def for_ab():
